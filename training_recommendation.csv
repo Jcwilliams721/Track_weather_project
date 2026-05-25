@@ -1,0 +1,6 @@
+latitude,longitude,apparent_temperature,humidity,wind_speed,wind_direction,readiness_score,risk_level,recommendation
+38.20718002319336,-85.76728820800781,76.93586730957031,90.0,5.534032344818115,194.03627014160156,85,Low,Environmental conditions are suitable for normal training. | High humidity may increase heat stress and fatigue.
+38.01630401611328,-84.48527526855469,72.97695922851562,91.0,7.618947505950928,183.36639404296875,85,Low,Environmental conditions are suitable for normal training. | High humidity may increase heat stress and fatigue.
+36.998931884765625,-86.47148895263672,74.03901672363281,90.0,7.635350227355957,211.82740783691406,85,Low,Environmental conditions are suitable for normal training. | High humidity may increase heat stress and fatigue.
+38.227054595947266,-85.69478607177734,75.17115783691406,91.0,5.8547892570495605,186.58184814453125,85,Low,Environmental conditions are suitable for normal training. | High humidity may increase heat stress and fatigue.
+37.7491455078125,-84.29212188720703,73.82505798339844,84.0,8.056305885314941,178.4088897705078,85,Low,Environmental conditions are suitable for normal training. | High humidity may increase heat stress and fatigue.
