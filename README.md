@@ -18,7 +18,7 @@
 
 **Workflow**:
 1. Fetches 7-day weather forecast from Open-Meteo API for multiple trackfacilites throughout Kentucky
-2. 2. Runs pre-set variables through rule-based logics based on values sent to generate a readiness score, risk level, and text based training recommendation.
+2. Runs pre-set variables through rule-based logics based on values sent to generate a readiness score, risk level, and text based training recommendation.
 
 **Usage**:
 ```bash
