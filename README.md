@@ -1,6 +1,11 @@
 ## Track and Field Environmental Readiness Recommendation System
 
-## Project Structure
+## Technologies Used
+- Open-Meteo API
+- Python
+- PostgreSQL
+- pgAdmin4
+- Power BI
 
 ## Scripts
 
@@ -16,6 +21,15 @@
 ```bash
 python Track_weather_Project.py
 ```
+
+## Future Improvements
+
+With amble time, the following components look to be added:
+- Athlete/Event group specific logic
+- Historical weather tracking
+- Injury risk Prediction
+- Dashboard Automation
+
 ## Requirements
 
 Install dependencies from `requirements.txt`:
@@ -26,7 +40,6 @@ pip install -r requirements.txt
 Key libraries:
 - `requests`: HTTP library for API calls
 - `pandas`: Data manipulation and analysis
-- `openpyxl`: Excel file handling
 - `openmeteo_requests`: Optional wrapper library for Open-Meteo API
 
 ## API Reference
