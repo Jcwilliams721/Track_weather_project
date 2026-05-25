@@ -1,11 +1,14 @@
 ## Track and Field Environmental Readiness Recommendation System
 
 ## Technologies Used
-- Open-Meteo API
-- Python
-- PostgreSQL
-- pgAdmin4
-- Power BI
+
+|Technology|Purpose|
+|---|---|
+|Open-Meteo API|Weather Data Source|
+|Python|Weather processing and recommendation generation|
+|SQLAlchemy|Python-to-PostgreSQL integration|
+|PostgreSQL|Database Storage|
+|Power BI|Planned Data Visualization|
 
 ## Scripts
 
@@ -29,9 +32,6 @@ With amble time, the following components look to be added:
 - Historical weather tracking
 - Injury risk Prediction
 - Dashboard Automation
-
-Future versions of the project may use SQLAlchemy to automate direct insertion of Python-generated recommendation data into PostgreSQL without requiring CSV exports.
-
 
 ## Requirements
 
