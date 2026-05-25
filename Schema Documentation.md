@@ -90,7 +90,10 @@ Recommenations generated using rule-based logic based on weather data.
 
 ## Data Pipeline Explanation
 
-Weather data is retrived using the Open-Meteo API through Python. Python processes the environment condtions and generated readiness recommendations using rule-based logic. The process results are exported to CSV format and imported PostegreSQL for storage and visualization.
+Weather data is retrieved from the Open-Meteo API using Python. The Python application processes environmental conditions and generates readiness recommendations based on apparent temperature, humidity, and wind speed.
+
+The processed recommendation data is stored in a pandas dataframe and inserted directly into PostgreSQL using SQLAlchemy. SQLAlchemy is used to establish a connection between Python and PostgreSQL, allowing automated insertion of recommendation records into the training_recommendation table.
+
 
 ## Future Improvements
 Future improvements may include:
