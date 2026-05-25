@@ -20,3 +20,4 @@ CREATE TABLE training_recommendation(
     risk_level VARCHAR(20), 
     recommendation TEXT
 )
+
