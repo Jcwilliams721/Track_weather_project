@@ -30,6 +30,9 @@ With amble time, the following components look to be added:
 - Injury risk Prediction
 - Dashboard Automation
 
+Future versions of the project may use SQLAlchemy to automate direct insertion of Python-generated recommendation data into PostgreSQL without requiring CSV exports.
+
+
 ## Requirements
 
 Install dependencies from `requirements.txt`:
