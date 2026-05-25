@@ -4,6 +4,7 @@
 # In[46]:
 
 
+
 import openmeteo_requests
 
 import pandas as pd
