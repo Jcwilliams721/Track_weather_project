@@ -10,6 +10,23 @@
 |PostgreSQL|Database Storage|
 |Power BI|Planned Data Visualization|
 
+## ETL Process
+**Extract**
+- Pulls weather data from Open-Meteo API
+
+**Transform**
+- Generates readiness scores
+- Generates risk levels
+- Creates training recommendations
+
+**Validate**
+- Null value check
+- Duplicate check
+- Humidity range check
+
+**Load**
+- Load transformed data into PostgreSQL using SQLAlchemy
+
 ## Scripts
 
 ### Track_weather_Project.py
