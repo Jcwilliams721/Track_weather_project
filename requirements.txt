@@ -1,0 +1,7 @@
+openmeteo_request
+pands
+requsts_cache
+rety_requests
+psycopg2-binary
+SQLAlchemy
+Power BI
