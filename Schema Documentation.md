@@ -1,6 +1,6 @@
 # Database Schema Documentation
 
-##Weather Forecast Data Warehouse
+## Weather Forecast Data Warehouse
 
 This database uses daily weeather data from the Open-Meteo API to generate training readiness recommendations for track and field athletes. Weather variables usch as apparent temperature, humidity, and wind speed are process in Python and stored in PostgreSQL for future analytics and visualization in Power BI.
 
