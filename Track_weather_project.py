@@ -207,7 +207,7 @@ def load_to_postgres(recommendation_df):
 		recommendation_df.to_sql(
     		"training_recommendation",
     		engine,
-    		if_exists="append",
+    		if_exists="replace",
     		index=False
 		)
 		logging.info("Data loaded successfully")
