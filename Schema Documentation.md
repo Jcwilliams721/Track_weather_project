@@ -30,7 +30,7 @@ Stores specific event groups
 
 **Primary Key**
 
--One `athlete_group_id` can realte to many `training_recommendation records`
+-One `athlete_group_id` can relate to many `training_recommendation records`
 
 **Table Sructure**
 
@@ -86,7 +86,7 @@ The API provides:
 
 ## Recommendation Source
 
-Recommenations generated using rule-based logic based on weather data.
+Recommendations generated using rule-based logic based on weather data.
 
 ## Data Pipeline Explanation
 
