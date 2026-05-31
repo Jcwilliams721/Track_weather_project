@@ -26,6 +26,7 @@
 
 **Load**
 - Load transformed data into PostgreSQL using SQLAlchemy
+- To keep up with the constantly changing weather, the ETF pipeline will replace the exisitng table in PostgreSQL on every run to ensure that the information stored is as accurate and up-to-date as possible.
 
 ## Scripts
 
