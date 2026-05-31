@@ -24,7 +24,7 @@ def extract_weather_data():
     	"temperature_unit": "fahrenheit",
     	"precipitation_unit": "inch",
     }
-    responses = openmeteo.weather_api(url, params = params)
+    responses = openmeteo.weather_api(url, params = param)
     return responses
 
 def generate_recommendation(apparent_temp, humidity, wind_speed):
