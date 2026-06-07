@@ -18,7 +18,7 @@ def extract_weather_data():
     param = {
     	"latitude": [38.216654818927914, 38.02855350938454, 36.98569946250266, 38.21579469876888, 37.736508914713504],
     	"longitude": [-85.7534858144206, -84.49781402051626, -86.46059108007746, -85.70287524531375, -84.29839107702759],
-    	"daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "uv_index_max", "precipitation_hours", "wind_speed_10m_max", "wind_direction_10m_dominant"],
+    	"daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "uv_index_max", "precipitation_hours", "wind_speed_10m_max", "wind_direction_10m_dominant", "apparent_temperature_max", "relative_humidity_2m_mean"],
     	"current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "weather_code", "wind_speed_10m", "wind_direction_10m"],
     	"wind_speed_unit": "mph",
     	"temperature_unit": "fahrenheit",
@@ -94,28 +94,6 @@ def transform_weather_data(responses):
         # Process 5 locations
         for response in responses:
 
-            print(f"\nCoordinates: {response.Latitude()}°N {response.Longitude()}°E")
-            print(f"Elevation: {response.Elevation()} m asl")
-            print(f"Timezone difference to GMT+0: {response.UtcOffsetSeconds()}s")
-
-            # Process current data
-            current = response.Current()
-
-            current_temperature_2m = current.Variables(0).Value()
-            current_relative_humidity_2m = current.Variables(1).Value()
-            current_apparent_temperature = current.Variables(2).Value()
-            current_weather_code = current.Variables(3).Value()
-            current_wind_speed_10m = current.Variables(4).Value()
-            current_wind_direction_10m = current.Variables(5).Value()
-
-            print(f"\nCurrent time: {current.Time()}")
-            print(f"Current temperature_2m: {current_temperature_2m}")
-            print(f"Current relative_humidity_2m: {current_relative_humidity_2m}")
-            print(f"Current apparent_temperature: {current_apparent_temperature}")
-            print(f"Current weather_code: {current_weather_code}")
-            print(f"Current wind_speed_10m: {current_wind_speed_10m}")
-            print(f"Current wind_direction_10m: {current_wind_direction_10m}")
-
             # Process daily data
             daily = response.Daily()
 
@@ -126,6 +104,8 @@ def transform_weather_data(responses):
             daily_precipitation_hours = daily.Variables(4).ValuesAsNumpy()
             daily_wind_speed_10m_max = daily.Variables(5).ValuesAsNumpy()
             daily_wind_direction_10m_dominant = daily.Variables(6).ValuesAsNumpy()
+            daily_apparent_temperature_max = daily.Variables(7).ValuesAsNumpy()
+            daily_relative_humidity_2m_mean = daily.Variables(8).ValuesAsNumpy()
 
             daily_data = {
                 "date": pd.date_range(
@@ -143,29 +123,32 @@ def transform_weather_data(responses):
             daily_data["precipitation_hours"] = daily_precipitation_hours
             daily_data["wind_speed_10m_max"] = daily_wind_speed_10m_max
             daily_data["wind_direction_10m_dominant"] = daily_wind_direction_10m_dominant
+            daily_data["apparent_temperature_max"] = daily_apparent_temperature_max
+            daily_data["relative_humidity_2m_mean"] = daily_relative_humidity_2m_mean
 
-            readiness_score, risk_level, recommendation = generate_recommendation(
-                current_apparent_temperature,
-                current_relative_humidity_2m,
-                current_wind_speed_10m
+            for i in range (len(daily_apparent_temperature_max)):
+                readiness_score, risk_level, recommendation = generate_recommendation(
+                    daily_apparent_temperature_max[i],
+                    daily_relative_humidity_2m_mean[i],
+                    daily_wind_speed_10m_max[i]
             )
-
+                recommendation_results.append({
+                    "date": daily_data["date"][i],
+                    "latitude": response.Latitude(),
+                    "longitude": response.Longitude(),
+                    "apparent_temperature": daily_apparent_temperature_max[i],
+                    "humidity": daily_relative_humidity_2m_mean[i],
+                    "wind_speed": daily_wind_speed_10m_max[i],
+                    "readiness_score": readiness_score,
+                    "risk_level": risk_level,
+                    "recommendation": recommendation
+            })
+            print(f"\nCoordinates: {response.Latitude()}°N {response.Longitude()}°E")
+            print(f"Elevation: {response.Elevation()} m asl")
+            print(f"Timezone difference to GMT+0: {response.UtcOffsetSeconds()}s")
             print(f"\nReadiness Score: {readiness_score}")
             print(f"Risk Level: {risk_level}")
             print(f"Recommendation: {recommendation}")
-
-            recommendation_results.append({
-                "latitude": response.Latitude(),
-                "longitude": response.Longitude(),
-                "apparent_temperature": current_apparent_temperature,
-                "humidity": current_relative_humidity_2m,
-                "wind_speed": current_wind_speed_10m,
-                "wind_direction": current_wind_direction_10m,
-                "readiness_score": readiness_score,
-                "risk_level": risk_level,
-                "recommendation": recommendation
-            })
-
             daily_dataframe = pd.DataFrame(data=daily_data)
 
             print("\nDaily data\n", daily_dataframe)
@@ -173,7 +156,7 @@ def transform_weather_data(responses):
     except Exception as e:
 
         logging.error(f"Transformation failed: {e}")
-
+    
     recommendation_df = pd.DataFrame(recommendation_results)
 
     return recommendation_df
@@ -197,7 +180,7 @@ def validate_data(recommendation_df):
 	logging.info("Validation complete")
 
 
-def load_to_postgres(recommendation_df):
+#def load_to_postgres(recommendation_df):
 	logging.info("Loading data into PostgreSQL")
 	try:
 		engine = create_engine(
@@ -205,7 +188,7 @@ def load_to_postgres(recommendation_df):
 		)
 
 		recommendation_df.to_sql(
-    		"training_recommendation",
+    		"Daily_Recommendation",
     		engine,
     		if_exists="replace",
     		index=False
