@@ -28,6 +28,15 @@
 - Load transformed data into PostgreSQL using SQLAlchemy
 - To keep up with the constantly changing weather, the ETF pipeline will replace the exisitng table in PostgreSQL on every run to ensure that the information stored is as accurate and up-to-date as possible.
 
+## Data Visualization
+This project utilizes Microsoft Power BI as the visualization tool with data connected directly from postgreSQL. The goal of the visual is to provide information in an interactice nad user-friendly manner.
+
+**Dashboard features include:**
+- Live PostgreSQL connectivity
+- Interactive filtering by location
+- Daily average cards for temperature, humidity perentage, and readines scores for each available location
+- Training Recommendation reporting
+
 ## Scripts
 
 ### Track_weather_Project.py
@@ -43,13 +52,6 @@
 python Track_weather_Project.py
 ```
 
-## Future Improvements
-
-With amble time, the following components look to be added:
-- Athlete/Event group specific logic
-- Historical weather tracking
-- Injury risk Prediction
-- Dashboard Automation
 
 ## Requirements
 
@@ -69,3 +71,11 @@ Key libraries:
 - Free access (no authentication required)
 - Generous rate limits for educational use
 - Supports multiple weather variables and locations
+
+## Future Improvements
+
+With amble time, the following components look to be added:
+- Athlete/Event group specific logic
+- Historical weather tracking
+- Injury risk Prediction
+- Dashboard Automation
