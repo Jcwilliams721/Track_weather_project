@@ -44,7 +44,7 @@ This project utilizes Microsoft Power BI as the visualization tool with data con
 **Purpose**: Production pipeline the receives weather condition data and runs multiple rule-based logics to generate training recommendations
 
 **Workflow**:
-1. Fetches 7-day weather forecast from Open-Meteo API for multiple trackfacilites throughout Kentucky
+1. Fetches 7-day weather forecast from Open-Meteo API for multiple track facilites throughout Kentucky
 2. Runs pre-set variables through rule-based logics based on values sent to generate a readiness score, risk level, and text based training recommendation.
 
 **Usage**:
