@@ -15,7 +15,7 @@ def extract_weather_data():
 
     url = "https://api.open-meteo.com/v1/forecast"
 
-    param = {
+    param = { 
     	"latitude": [38.216654818927914, 38.02855350938454, 36.98569946250266, 38.21579469876888, 37.736508914713504],
     	"longitude": [-85.7534858144206, -84.49781402051626, -86.46059108007746, -85.70287524531375, -84.29839107702759],
     	"daily": ["weather_code", "temperature_2m_max", "temperature_2m_min", "uv_index_max", "precipitation_hours", "wind_speed_10m_max", "wind_direction_10m_dominant", "apparent_temperature_max", "relative_humidity_2m_mean"],
@@ -109,8 +109,8 @@ def transform_weather_data(responses):
 
             daily_data = {
                 "date": pd.date_range(
-                    start=pd.to_datetime(daily.Time(), unit="s", utc=True),
-                    end=pd.to_datetime(daily.TimeEnd(), unit="s", utc=True),
+                    start=pd.to_datetime(daily.Time(), unit="s", utc=True).date(),
+                    end=pd.to_datetime(daily.TimeEnd(), unit="s", utc=True).date(),
                     freq=pd.Timedelta(seconds=daily.Interval()),
                     inclusive="left"
                 )
